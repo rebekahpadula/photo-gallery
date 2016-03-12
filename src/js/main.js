@@ -15,6 +15,7 @@ var photoGallery = function photoGallery (el, arr) {
     // Appending to element passed into function
     el.append(gallery);
 
+    // Setting the current photo's attribute
     function setCurrentSrc (url) {
         current.attr('src', url);
     }
@@ -36,22 +37,25 @@ var photoGallery = function photoGallery (el, arr) {
             current.attr('src', $(e.target).attr('src'));
         };
     });
-
+    // Appedning reduced images to the scroll element
     scroll.append(scrollElements);
 
     setCurrentSrc(arr[0]);
 
     var obj = {
+        // Removing all HTML elements
         destroy: function () {
             $('.gallery').remove();
             $('.gallery-scroll').remove();
             $('.gallery-current').remove();
         },
+        // Creating a new img tag, setting its attribute to the url passed in and appending it to the scroll element
         addImage: function (str) {
             var image = $('<img>');
             image.attr('src', str);
             scroll.append(image);
         },
+        // Finding the url passed in and removing it
         removeImage: function (str) {
             var removeImg = scroll.find('[src="' + str + '"]');
             removeImg.remove();
